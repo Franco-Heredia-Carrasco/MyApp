@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MyApp</string>
+    <string name="TXT_Guías_de_supervivencia">Guia de Supervivencia</string>
+    <string name="Txt_Terremotos">Terremotos</string>
 </resources>

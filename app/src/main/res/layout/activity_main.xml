@@ -14,18 +14,30 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        tools2:ignore="MissingConstraints">
+        tools2:ignore="MissingConstraints"
+        tools2:layout_editor_absoluteX="0dp"
+        tools2:layout_editor_absoluteY="7dp">
 
 
         <TextView
             android:id="@+id/txtTituloPrincipal"
-            android:layout_width="384dp"
-            android:layout_height="46dp"
-            android:layout_marginBottom="24dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
             android:gravity="center"
-            android:text="Guías de supervivencia"
+            android:text="@string/TXT_Guías_de_supervivencia"
+            android:textAlignment="center"
             android:textSize="22sp"
             android:textStyle="bold" />
+
+        <Button
+            android:id="@+id/boton_Terremotos"
+            android:layout_width="172dp"
+            android:layout_height="85dp"
+            android:layout_gravity="start"
+            android:text="@string/Txt_Terremotos" />
+
 
     </LinearLayout>
 
