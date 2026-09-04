@@ -1,44 +1,152 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://android.com"
-    xmlns:tools="http://android.com"
-    xmlns:tools2="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp"
-        tools2:ignore="MissingConstraints"
-        tools2:layout_editor_absoluteX="0dp"
-        tools2:layout_editor_absoluteY="7dp">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
 
-        <TextView
-            android:id="@+id/txtTituloPrincipal"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:text="@string/TXT_Guías_de_supervivencia"
-            android:textAlignment="center"
-            android:textSize="22sp"
-            android:textStyle="bold" />
-
-        <Button
-            android:id="@+id/boton_Terremotos"
-            android:layout_width="172dp"
-            android:layout_height="85dp"
-            android:layout_gravity="start"
-            android:text="@string/Txt_Terremotos" />
+            android:orientation="vertical"
+            android:padding="16dp"
+            tools:ignore="MissingConstraints"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="7dp">
 
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/TituloPrincipal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@string/TXT_Guías_de_supervivencia"
+                android:textAlignment="center"
+                android:textSize="22sp"
+                android:textStyle="bold" />
 
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Txt_Desastres_Unicos"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <!-- FILA 1: Terremotos e Incendios -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="16dp"> <!-- Espacio inferior para separar de la siguiente fila -->
+
+                <Button
+                    android:id="@+id/boton_Terremotos"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:text="@string/Txt_Terremotos"
+                    android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de incendios -->
+
+                <Button
+                    android:id="@+id/boton_Incendios"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:text="@string/Txt_Desastre_Incendio"
+                    android:layout_marginStart="8dp"/>
+            </LinearLayout>
+
+            <!-- FILA 2: Tornados y Lluvias -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal"
+                android:layout_marginBottom="16dp"> <!-- Espacio inferior para separar de la siguiente sección -->
+
+                <Button
+                    android:id="@+id/boton_Tornados"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:text="@string/Txt_Tornados"
+                    android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de lluvias -->
+
+                <Button
+                    android:id="@+id/boton_Lluvias"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:text="@string/Txt_LLuvias"
+                    android:layout_marginStart="8dp"/> <!-- Margen izquierdo para separar del botón de tornados -->
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/Txt_Desastres_Fusionados"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_horizontal">
+
+                <Button
+                    android:id="@+id/boton_Maremotos"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:text="@string/Txt_Desastre_Marremoto"
+                    android:layout_marginEnd="8dp"/>
+
+
+                <Button
+                    android:id="@+id/boton_Tormenta_Fuego"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Txt_Tormenta_de_FUEGOO" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/Aluvion"
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/txt_Aluvion" />
+
+                <Space
+                    android:layout_width="172dp"
+                    android:layout_height="85dp"
+                    android:layout_marginStart="8dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
