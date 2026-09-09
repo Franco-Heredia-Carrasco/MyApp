@@ -8,6 +8,22 @@
     <string name="Txt_LLuvias">LLuvias</string>
     <string name="Txt_Desastres_Fusionados">Combinacion de Desastres</string>
     <string name="Txt_Desastre_Marremoto">Marremotos</string>
-    <string name="Txt_Tormenta_de_FUEGOO">Tormenta de Fuego</string>
+    <string name="Txt_Tormenta_de_FUEGOO">Fire Storm</string>
     <string name="txt_Aluvion">Aluvion</string>
+
+    <!-- Guías de Supervivencia: Desastres Separados -->
+    <string name="guia_terremotos">En caso de terremoto:\n\n1. ¡Agáchate, cúbrete y afírmate!\n2. Aléjate de ventanas, espejos y muebles altos que puedan caer.\n3. Si estás adentro, quédate adentro hasta que pase el temblor.\n4. Si estás afuera, dirígete a un área despejada, lejos de edificios y postes de luz.</string>
+
+    <string name="guia_incendios">En caso de incendio:\n\n1. Mantén la calma y evacúa rápidamente. No uses ascensores.\n2. Si hay humo, gatea. El aire más limpio está cerca del suelo.\n3. Toca las puertas con el dorso de la mano antes de abrirlas; si están calientes, busca otra salida.\n4. Si tu ropa se incendia: detente, tírate al suelo y rueda.</string>
+
+    <string name="guia_tornados">En caso de tornado:\n\n1. Busca refugio inmediatamente en un sótano o en la habitación más interna del piso más bajo (como un baño o pasillo sin ventanas).\n2. Cúbrete la cabeza y el cuello con los brazos, y usa un colchón o mantas gruesas si es posible.\n3. Si estás en un vehículo, abandónalo y busca un edificio resistente o acuéstate en una zanja baja.</string>
+
+    <string name="guia_lluvias">En caso de lluvias extremas o inundaciones:\n\n1. Desconecta la energía eléctrica desde el tablero principal si el agua amenaza con entrar a tu casa.\n2. Evita caminar por aguas en movimiento; 15 centímetros de agua pueden hacerte caer.\n3. ¡Nunca conduzcas por un camino inundado! Tu vehículo podría ser arrastrado.</string>
+
+    <!-- Guías de Supervivencia: Combinación de Desastres -->
+    <string name="guia_maremotos">En caso de maremoto (Tsunami):\n\n1. Si sientes un sismo fuerte en la costa que te dificulta mantenerte en pie, evacúa inmediatamente hacia zonas altas (al menos 30 metros de altura).\n2. Sigue las vías de evacuación señalizadas.\n3. Nunca vayas a la playa a mirar el retroceso del mar, es una señal inminente del tsunami.</string>
+
+    <string name="guia_firestorm">En caso de Fire Storm (Tormenta de Fuego):\n\n1. La evacuación temprana es tu única defensa. Si las autoridades lo ordenan, sal de inmediato.\n2. Cierra todas las ventanas, puertas y ductos de ventilación de la casa para evitar que entren brasas encendidas.\n3. Usa ropa de algodón de mangas largas y pantalones largos para proteger tu piel del calor radiante.</string>
+
+    <string name="guia_aluvion">En caso de aluvión (Desprendimiento de barro):\n\n1. Mantente alerta durante lluvias intensas o continuas, especialmente si vives cerca de quebradas.\n2. Si escuchas un ruido sordo o un rugido que aumenta de volumen, aléjate del cauce de inmediato y sube a una ladera alta.\n3. No cruces puentes si el nivel del agua o del barro está muy alto.</string>
 </resources>

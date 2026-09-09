@@ -59,14 +59,14 @@
 
                 <Button
                     android:id="@+id/boton_Terremotos"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:text="@string/Txt_Terremotos"
                     android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de incendios -->
 
                 <Button
                     android:id="@+id/boton_Incendios"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:text="@string/Txt_Desastre_Incendio"
                     android:layout_marginStart="8dp"/>
@@ -82,14 +82,14 @@
 
                 <Button
                     android:id="@+id/boton_Tornados"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:text="@string/Txt_Tornados"
                     android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de lluvias -->
 
                 <Button
                     android:id="@+id/boton_Lluvias"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:text="@string/Txt_LLuvias"
                     android:layout_marginStart="8dp"/> <!-- Margen izquierdo para separar del botón de tornados -->
@@ -112,7 +112,7 @@
 
                 <Button
                     android:id="@+id/boton_Maremotos"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:text="@string/Txt_Desastre_Marremoto"
                     android:layout_marginEnd="8dp"/>
@@ -120,7 +120,7 @@
 
                 <Button
                     android:id="@+id/boton_Tormenta_Fuego"
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:layout_marginStart="8dp"
                     android:text="@string/Txt_Tormenta_de_FUEGOO" />
@@ -134,14 +134,14 @@
                 android:orientation="horizontal">
 
                 <Button
-                    android:id="@+id/Aluvion"
-                    android:layout_width="172dp"
+                    android:id="@+id/boton_Aluvion"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:layout_marginEnd="8dp"
                     android:text="@string/txt_Aluvion" />
 
                 <Space
-                    android:layout_width="172dp"
+                    android:layout_width="140dp"
                     android:layout_height="85dp"
                     android:layout_marginStart="8dp"/>
 

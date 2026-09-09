@@ -22,9 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Terremotos"
-            android:exported="false"
-            android:windowSoftInputMode="adjustResize" />
+            android:name=".PlantillaActivity"
+            android:exported="false"/>
+
+
     </application>
 
 </manifest>

@@ -1,35 +1,64 @@
 package com.example.myapp;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
-
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class MainActivity extends AppCompatActivity {
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
-        Button boton_Terremotos = findViewById(R.id.boton_Terremotos);
+    private Button boton_Terremotos, boton_Incendios, boton_Tornados, boton_Lluvias, boton_Maremotos, boton_Tormenta_Fuego, boton_Aluvion;
 
-        boton_Terremotos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this,"Cagando Guia Preventiva de Terremotos", Toast.LENGTH_SHORT).show();
-            }
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        boton_Terremotos = findViewById(R.id.boton_Terremotos);
+        boton_Incendios = findViewById(R.id.boton_Incendios);
+        boton_Tornados = findViewById(R.id.boton_Tornados);
+        boton_Lluvias = findViewById(R.id.boton_Lluvias);
+        boton_Maremotos = findViewById(R.id.boton_Maremotos);
+        boton_Tormenta_Fuego = findViewById(R.id.boton_Tormenta_Fuego);
+        boton_Aluvion = findViewById(R.id.boton_Aluvion);
+
+
+        boton_Terremotos.setOnClickListener(v -> {
+            abrirGuia("Guia: Terremotos", getString(R.string.guia_terremotos));
         });
+
+        boton_Incendios.setOnClickListener(v -> {
+            abrirGuia("Guia: Incendios", getString(R.string.guia_incendios));
+        });
+
+        boton_Tornados.setOnClickListener(v -> {
+            abrirGuia("Guia: Tornados", getString(R.string.guia_tornados));
+        });
+
+        boton_Lluvias.setOnClickListener(v -> {
+            abrirGuia("Guia: Lluvias", getString(R.string.guia_lluvias));
+        });
+
+        boton_Maremotos.setOnClickListener(v -> {
+            abrirGuia("Guia: Marremotos", getString(R.string.guia_maremotos));
+        });
+
+        boton_Tormenta_Fuego.setOnClickListener(v -> {
+            abrirGuia("Guia: Firestorm", getString(R.string.guia_firestorm));
+        });
+
+        boton_Aluvion.setOnClickListener(v -> {
+            abrirGuia("Guia: Aluvion", getString(R.string.guia_aluvion));
+        });
+
+
+
+    }
+    private void abrirGuia(String Titulo, String Guia) {
+        Intent intent = new Intent(MainActivity.this, PlantillaActivity.class);
+        intent.putExtra("Titulo De Cambio", Titulo);
+        intent.putExtra("Texto de cambio guia", Guia);
+        startActivity(intent);
     }
 }
