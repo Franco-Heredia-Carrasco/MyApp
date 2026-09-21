@@ -18,8 +18,8 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
-        android:layout_width="224dp"
-        android:layout_height="80dp"
+        android:layout_width="320dp"
+        android:layout_height="86dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,20 +32,23 @@
             android:id="@+id/button_7"
             android:layout_width="100dp"
             android:layout_height="78dp"
-            android:layout_marginEnd="4dp" />
+            android:layout_marginEnd="4dp"
+            android:text="7"/>
 
         <Button
             android:id="@+id/button_8"
             android:layout_width="100dp"
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
-            android:layout_marginEnd="4dp"/>
+            android:layout_marginEnd="4dp"
+            android:text="8"/>
 
         <Button
             android:id="@+id/button_9"
             android:layout_width="100dp"
             android:layout_height="78dp"
-            android:layout_marginStart="4dp"/>
+            android:layout_marginStart="4dp"
+            android:text="9"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
