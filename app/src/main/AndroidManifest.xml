@@ -22,10 +22,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".PlantillaActivity"
+            android:name="controlador.Guias.PlantillaActivity"
             android:exported="false"/>
         <activity
-            android:name=".GuiasFragment"
+            android:name="controlador.Guias.GuiasFragment"
             android:exported="false"/>
 
 

@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import controlador.Guias.GuiasFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override

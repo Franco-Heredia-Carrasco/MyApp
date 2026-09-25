@@ -26,4 +26,11 @@
     <string name="guia_firestorm">En caso de Fire Storm (Tormenta de Fuego):\n\n1. La evacuación temprana es tu única defensa. Si las autoridades lo ordenan, sal de inmediato.\n2. Cierra todas las ventanas, puertas y ductos de ventilación de la casa para evitar que entren brasas encendidas.\n3. Usa ropa de algodón de mangas largas y pantalones largos para proteger tu piel del calor radiante.</string>
 
     <string name="guia_aluvion">En caso de aluvión (Desprendimiento de barro):\n\n1. Mantente alerta durante lluvias intensas o continuas, especialmente si vives cerca de quebradas.\n2. Si escuchas un ruido sordo o un rugido que aumenta de volumen, aléjate del cauce de inmediato y sube a una ladera alta.\n3. No cruces puentes si el nivel del agua o del barro está muy alto.</string>
+
+    <string name="boton_1">1</string>
+    <string name="boton_2">2</string>
+    <string name="boton_3">3</string>
+    <string name="boton_4">4</string>
+    <string name="boton_5">5</string>
+    <string name="boton_6">6</string>
 </resources>

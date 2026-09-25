@@ -23,8 +23,7 @@ public class CalculadoraFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        // Si tienes botones o lógica en la calculadora, búscalos aquí usando 'view':
-        // Button miBoton = view.findViewById(R.id.mi_boton);
+        // Aca están los botones principales de numero
         Button boton1 = view.findViewById(R.id.button_1);
         Button boton2 = view.findViewById(R.id.button_2);
         Button boton3 = view.findViewById(R.id.button_3);
@@ -35,7 +34,10 @@ public class CalculadoraFragment extends Fragment {
         Button boton8 = view.findViewById(R.id.button_8);
         Button boton9 = view.findViewById(R.id.button_9);
         Button boton0 = view.findViewById(R.id.button_0);
-        Button boton00 = view.findViewById(R.id.button_00);
+
+        //aca van los botones de los demas botones
+        Button botonpunto = view.findViewById(R.id.button_punto);
+
 
 
     }
