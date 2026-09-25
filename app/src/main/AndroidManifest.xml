@@ -24,6 +24,9 @@
         <activity
             android:name=".PlantillaActivity"
             android:exported="false"/>
+        <activity
+            android:name=".GuiasFragment"
+            android:exported="false"/>
 
 
     </application>

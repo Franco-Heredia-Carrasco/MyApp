@@ -1,64 +1,50 @@
 package com.example.myapp;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Button;
+import android.view.MenuItem;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.navigation.NavigationBarView;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button boton_Terremotos, boton_Incendios, boton_Tornados, boton_Lluvias, boton_Maremotos, boton_Tormenta_Fuego, boton_Aluvion;
-
     @Override
-    protected void onCreate(Bundle savedInstanceState){
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
 
-        boton_Terremotos = findViewById(R.id.boton_Terremotos);
-        boton_Incendios = findViewById(R.id.boton_Incendios);
-        boton_Tornados = findViewById(R.id.boton_Tornados);
-        boton_Lluvias = findViewById(R.id.boton_Lluvias);
-        boton_Maremotos = findViewById(R.id.boton_Maremotos);
-        boton_Tormenta_Fuego = findViewById(R.id.boton_Tormenta_Fuego);
-        boton_Aluvion = findViewById(R.id.boton_Aluvion);
+        // Inicia mostrando las Guías
+        if (savedInstanceState == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new GuiasFragment())
+                    .commit();
+        }
 
+        // Alterna entre Guías y Calculadora
+        bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                int id = item.getItemId();
 
-        boton_Terremotos.setOnClickListener(v -> {
-            abrirGuia("Guia: Terremotos", getString(R.string.guia_terremotos));
+                if (id == R.id.nav_guias) {
+                    selectedFragment = new GuiasFragment();
+                } else if (id == R.id.nav_calculadora) {
+                    selectedFragment = new CalculadoraFragment();
+                }
+
+                if (selectedFragment != null) {
+                    getSupportFragmentManager().beginTransaction()
+                            .replace(R.id.fragment_container, selectedFragment)
+                            .commit();
+                    return true;
+                }
+                return false;
+            }
         });
-
-        boton_Incendios.setOnClickListener(v -> {
-            abrirGuia("Guia: Incendios", getString(R.string.guia_incendios));
-        });
-
-        boton_Tornados.setOnClickListener(v -> {
-            abrirGuia("Guia: Tornados", getString(R.string.guia_tornados));
-        });
-
-        boton_Lluvias.setOnClickListener(v -> {
-            abrirGuia("Guia: Lluvias", getString(R.string.guia_lluvias));
-        });
-
-        boton_Maremotos.setOnClickListener(v -> {
-            abrirGuia("Guia: Marremotos", getString(R.string.guia_maremotos));
-        });
-
-        boton_Tormenta_Fuego.setOnClickListener(v -> {
-            abrirGuia("Guia: Firestorm", getString(R.string.guia_firestorm));
-        });
-
-        boton_Aluvion.setOnClickListener(v -> {
-            abrirGuia("Guia: Aluvion", getString(R.string.guia_aluvion));
-        });
-
-
-
-    }
-    private void abrirGuia(String Titulo, String Guia) {
-        Intent intent = new Intent(MainActivity.this, PlantillaActivity.class);
-        intent.putExtra("Titulo De Cambio", Titulo);
-        intent.putExtra("Texto de cambio guia", Guia);
-        startActivity(intent);
     }
 }
