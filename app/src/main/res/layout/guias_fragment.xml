@@ -6,16 +6,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
+    android:focusable="true"
+    android:focusableInTouchMode="true">
 
     <ScrollView
+        android:id="@+id/Scroll_principal"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        android:layout_marginTop="0dp"
+        android:paddingTop="0dp">
 
 
         <LinearLayout
@@ -32,7 +37,6 @@
                 android:id="@+id/TituloPrincipal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
                 android:gravity="center"
                 android:text="@string/TXT_Guías_de_supervivencia"
@@ -40,82 +44,81 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:text="@string/Txt_Desastres_Unicos"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
+                android:textStyle="bold" />
 
             <!-- FILA 1: Terremotos e Incendios -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="16dp"> <!-- Espacio inferior para separar de la siguiente fila -->
+                android:orientation="horizontal"> <!-- Espacio inferior para separar de la siguiente fila -->
 
                 <Button
                     android:id="@+id/boton_Terremotos"
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:text="@string/Txt_Terremotos"
-                    android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de incendios -->
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/Txt_Terremotos" /> <!-- Margen derecho para separar del botón de incendios -->
 
                 <Button
                     android:id="@+id/boton_Incendios"
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:text="@string/Txt_Desastre_Incendio"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Txt_Desastre_Incendio" />
             </LinearLayout>
 
             <!-- FILA 2: Tornados y Lluvias -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
+                android:layout_marginBottom="16dp"
                 android:gravity="center_horizontal"
-                android:layout_marginBottom="16dp"> <!-- Espacio inferior para separar de la siguiente sección -->
+                android:orientation="horizontal"> <!-- Espacio inferior para separar de la siguiente sección -->
 
                 <Button
                     android:id="@+id/boton_Tornados"
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:text="@string/Txt_Tornados"
-                    android:layout_marginEnd="8dp"/> <!-- Margen derecho para separar del botón de lluvias -->
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/Txt_Tornados" /> <!-- Margen derecho para separar del botón de lluvias -->
 
                 <Button
                     android:id="@+id/boton_Lluvias"
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:text="@string/Txt_LLuvias"
-                    android:layout_marginStart="8dp"/> <!-- Margen izquierdo para separar del botón de tornados -->
+                    android:layout_marginStart="8dp"
+                    android:text="@string/Txt_LLuvias" /> <!-- Margen izquierdo para separar del botón de tornados -->
             </LinearLayout>
 
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
                 android:text="@string/Txt_Desastres_Fusionados"
                 android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="16dp"/>
+                android:textStyle="bold" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center_horizontal">
+                android:gravity="center_horizontal"
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/boton_Maremotos"
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:text="@string/Txt_Desastre_Marremoto"
-                    android:layout_marginEnd="8dp"/>
+                    android:layout_marginEnd="8dp"
+                    android:text="@string/Txt_Desastre_Marremoto" />
 
 
                 <Button
@@ -143,7 +146,7 @@
                 <Space
                     android:layout_width="140dp"
                     android:layout_height="85dp"
-                    android:layout_marginStart="8dp"/>
+                    android:layout_marginStart="8dp" />
 
             </LinearLayout>
 

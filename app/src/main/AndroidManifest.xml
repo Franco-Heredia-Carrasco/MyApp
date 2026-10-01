@@ -26,6 +26,10 @@
             android:exported="false"/>
         <activity
             android:name="controlador.Guias.GuiasFragment"
+            android:exported="false"
+            tools:ignore="Instantiatable" />
+        <activity
+            android:name="controlador.Login.LoginActivity"
             android:exported="false"/>
 
 

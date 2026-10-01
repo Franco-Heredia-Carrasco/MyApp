@@ -33,4 +33,15 @@
     <string name="boton_4">4</string>
     <string name="boton_5">5</string>
     <string name="boton_6">6</string>
+    <string name="boton_7">7</string>
+    <string name="boton_8">8</string>
+    <string name="boton_9">9</string>
+    <string name="boton_ac">AC</string>
+    <string name="boton_c">C</string>
+    <string name="boton_0">0</string>
+    <string name="boton_.">.</string>
+    <string name="boton_login">Iniciar Sesion</string>
+    <string name="boton_mapa">Ver mapa de contactos</string>
+
+
 </resources>

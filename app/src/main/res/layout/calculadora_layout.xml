@@ -36,8 +36,9 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="AC"
+            android:text="@string/boton_ac"
             android:textSize="24sp" />
+
 
     </LinearLayout>
 
@@ -59,7 +60,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="7"
+            android:text="@string/boton_7"
             android:textSize="24sp" />
 
         <Button
@@ -68,7 +69,7 @@
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:text="8"
+            android:text="@string/boton_8"
             android:textSize="24sp" />
 
         <Button
@@ -76,7 +77,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
-            android:text="9"
+            android:text="@string/boton_9"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -99,7 +100,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="1"
+            android:text="@string/boton_1"
             android:textSize="24sp" />
 
         <Button
@@ -108,7 +109,7 @@
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:text="2"
+            android:text="@string/boton_2"
             android:textSize="24sp" />
 
         <Button
@@ -116,7 +117,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
-            android:text="3"
+            android:text="@string/boton_3"
             android:textSize="24sp" />
     </LinearLayout>
 
@@ -139,7 +140,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="4"
+            android:text="@string/boton_4"
             android:textSize="24sp" />
 
         <Button
@@ -148,7 +149,7 @@
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
             android:layout_marginEnd="4dp"
-            android:text="5"
+            android:text="@string/boton_5"
             android:textSize="24sp" />
 
         <Button
@@ -156,7 +157,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
-            android:text="6"
+            android:text="@string/boton_6"
             android:textSize="24sp" />
 
     </LinearLayout>
@@ -179,7 +180,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="C"
+            android:text="@string/boton_c"
             android:textSize="24sp" />
 
         <Button
@@ -187,7 +188,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginEnd="4dp"
-            android:text="0"
+            android:text="@string/boton_0"
             android:textSize="24sp" />
 
         <Button
@@ -195,7 +196,7 @@
             android:layout_width="96dp"
             android:layout_height="78dp"
             android:layout_marginStart="4dp"
-            android:text="."
+            android:text="@string/boton_."
             android:textSize="30sp" />
     </LinearLayout>
 
