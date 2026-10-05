@@ -1,10 +1,12 @@
 package com.example.myapp;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,14 +16,16 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import controlador.Calculadora.CalculadoraFragment;
 import controlador.Guias.GuiasFragment;
 
 public class MainActivity extends AppCompatActivity {
 
 
-    private Button btnIniciarSesion, btnMapa;
+    private Button btnIniciarSesion, btnMapa, btnCerrarSession;
     private FirebaseAuth mAuth;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         btnIniciarSesion = findViewById(R.id.boton_iniciar_sesion);
         btnMapa = findViewById(R.id.boton_mapa);
+        btnCerrarSession = findViewById(R.id.boton_cerrar_sesion);
 
 
         btnIniciarSesion.setOnClickListener(v -> {
@@ -42,6 +47,12 @@ public class MainActivity extends AppCompatActivity {
         btnMapa.setOnClickListener(v -> {
             // Lógica del mapa para más adelante
         });
+
+        btnCerrarSession.setOnClickListener(V -> {
+                    FirebaseAuth.getInstance().signOut();
+                    Toast.makeText(this,"Cerrar Session", Toast.LENGTH_SHORT).show();
+                    onResume();
+                });
 
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
@@ -88,10 +99,12 @@ public class MainActivity extends AppCompatActivity {
             // Si ya inició sesión: Ocultamos Login y mostramos el Mapa
             btnIniciarSesion.setVisibility(View.GONE);
             btnMapa.setVisibility(View.VISIBLE);
+            btnCerrarSession.setVisibility(View.VISIBLE);
         } else {
             // Si no hay sesión: Mostramos Login y ocultamos el Mapa
             btnIniciarSesion.setVisibility(View.VISIBLE);
             btnMapa.setVisibility(View.GONE);
+            btnCerrarSession.setVisibility(View.GONE);
         }
     }
 }

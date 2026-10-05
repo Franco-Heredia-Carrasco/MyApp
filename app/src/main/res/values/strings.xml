@@ -40,8 +40,13 @@
     <string name="boton_c">C</string>
     <string name="boton_0">0</string>
     <string name="boton_.">.</string>
-    <string name="boton_login">Iniciar Sesion</string>
+    <string name="boton_paren">()</string>
+    <string name="boton_porcen">%</string>
+    <string name="boton_div">/</string>
+    //botones del login y mapa
+    <string name="boton_login">Iniciar Session</string>
     <string name="boton_mapa">Ver mapa de contactos</string>
+    <string name="boton_unloggin">Cerrar Session</string>
 
 
 </resources>
