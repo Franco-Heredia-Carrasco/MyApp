@@ -45,7 +45,7 @@
     <string name="boton_div">/</string>
     //botones del login y mapa
     <string name="boton_login">Iniciar Session</string>
-    <string name="boton_mapa">Ver mapa de contactos</string>
+    <string name="boton_mapa">Ver mapa</string>
     <string name="boton_unloggin">Cerrar Session</string>
 
 

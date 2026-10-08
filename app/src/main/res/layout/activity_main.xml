@@ -18,20 +18,23 @@
             android:id="@+id/boton_iniciar_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/boton_login" />
+            android:text="@string/boton_login"
+            android:layout_marginEnd="2dp"/>
 
         <Button
             android:id="@+id/boton_mapa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/boton_mapa"
-            android:visibility="gone" />
+            android:layout_marginStart="2dp"
+            android:layout_marginEnd="2dp"/>
         <Button
             android:id="@+id/boton_cerrar_sesion"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/boton_unloggin"
-            android:visibility="gone" />
+            android:visibility="gone"
+            android:layout_marginStart="2dp"/>
 
     </LinearLayout>
 

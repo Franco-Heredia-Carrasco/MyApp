@@ -103,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
         } else {
             // Si no hay sesión: Mostramos Login y ocultamos el Mapa
             btnIniciarSesion.setVisibility(View.VISIBLE);
-            btnMapa.setVisibility(View.GONE);
+            btnMapa.setVisibility(View.VISIBLE);
             btnCerrarSession.setVisibility(View.GONE);
         }
     }
