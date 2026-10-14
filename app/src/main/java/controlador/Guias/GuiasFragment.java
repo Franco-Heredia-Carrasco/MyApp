@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapp.R;
+import com.franco.asistenciaiquique.R;
 
 public class GuiasFragment extends Fragment {
 

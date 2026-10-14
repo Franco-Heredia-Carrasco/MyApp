@@ -1,4 +1,4 @@
-package com.example.myapp;
+package com.franco.asistenciaiquique;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -45,7 +47,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         btnMapa.setOnClickListener(v -> {
-            // Lógica del mapa para más adelante
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, new controlador.Mapa.Mapa())
+                    .addToBackStack(null) // Esto permite usar el botón "Atrás" del celular para salir del mapa
+                    .commit();
         });
 
         btnCerrarSession.setOnClickListener(V -> {

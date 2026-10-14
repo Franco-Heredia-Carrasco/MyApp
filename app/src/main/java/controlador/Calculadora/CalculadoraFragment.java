@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.util.TypedValue;
+import android.widget.ScrollView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.example.myapp.R;
+import com.franco.asistenciaiquique.R;
 
 public class CalculadoraFragment extends Fragment {
 
@@ -21,6 +23,11 @@ public class CalculadoraFragment extends Fragment {
     private String operador = "";
     private double primerOperando = 0;
     private String textoPrimerOperando = ""; // Recuerda el primer número para mostrarlo
+
+    // VARIABLES PARA EL HISTORIAL
+    private ScrollView panelHistorial;
+    private TextView tvHistorial;
+    private String memoriaHistorial = "";
 
     @Nullable
     @Override
@@ -35,6 +42,23 @@ public class CalculadoraFragment extends Fragment {
         // Enlazamos la pantalla (EditText) y bloqueamos el teclado del celular
         tvResultado = view.findViewById(R.id.tv_resultado);
         tvResultado.setShowSoftInputOnFocus(false);
+
+        // --- INICIO CONFIGURACIÓN DEL HISTORIAL ---
+        panelHistorial = view.findViewById(R.id.panel_historial);
+        tvHistorial = view.findViewById(R.id.tv_historial);
+        Button btnHistorial = view.findViewById(R.id.button_Historial);
+
+        // Hacer que el botón muestre u oculte el panel del historial
+        if (btnHistorial != null) {
+            btnHistorial.setOnClickListener(v -> {
+                if (panelHistorial.getVisibility() == View.GONE) {
+                    panelHistorial.setVisibility(View.VISIBLE);
+                } else {
+                    panelHistorial.setVisibility(View.GONE);
+                }
+            });
+        }
+        // --- FIN CONFIGURACIÓN DEL HISTORIAL ---
 
         // 1. Configurar botones de Números (0-9)
         int[] idBotonesNumeros = {
@@ -103,7 +127,7 @@ public class CalculadoraFragment extends Fragment {
                     double segundoOperando = Double.parseDouble(inputActual);
                     double resultado = 0;
 
-                    // Realizar la matemática
+                    // Realizar la matemática (Arreglé los signos - y * que faltaban)
                     switch (operador) {
                         case "+": resultado = primerOperando + segundoOperando; break;
                         case "-": resultado = primerOperando - segundoOperando; break;
@@ -121,12 +145,23 @@ public class CalculadoraFragment extends Fragment {
                             break;
                     }
 
-                    // Formatear el resultado para quitar decimales si es entero
+                    // Guardar el número original en texto (por si tenía decimales o no)
+                    String textoSegundoOperando = (segundoOperando == (long) segundoOperando) ?
+                            String.format("%d", (long) segundoOperando) : String.valueOf(segundoOperando);
+
+                    // Formatear el resultado final
                     if (resultado == (long) resultado) {
                         inputActual = String.format("%d", (long) resultado);
                     } else {
                         inputActual = String.valueOf(resultado);
                     }
+
+                    // --- GUARDAR EN EL HISTORIAL ---
+                    // Se arma la operación: Ej. "5 + 5 = 10"
+                    String operacionCompleta = textoPrimerOperando + " " + operador + " " + textoSegundoOperando + " = " + inputActual;
+                    memoriaHistorial += operacionCompleta + "\n\n"; // Se suma a lo que ya había con un salto de línea
+                    tvHistorial.setText(memoriaHistorial);          // Se envía al panel oscuro
+                    // -------------------------------
 
                     // Limpiar memorias temporales para mostrar solo el resultado final
                     operador = "";

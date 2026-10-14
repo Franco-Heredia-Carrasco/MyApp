@@ -4,39 +4,56 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:background="#121212">
 
-    <!-- Espacio superior para la pantalla de la calculadora -->
+    <!-- 1. BOTÓN DE HISTORIAL (Arriba del todo) -->
+    <Button
+        android:id="@+id/button_Historial"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Historial"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <!-- 2. PANTALLA DE LA CALCULADORA (Ubicada exactamente DEBAJO del botón) -->
     <EditText
         android:id="@+id/tv_resultado"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@android:color/transparent"
+        android:cursorVisible="true"
         android:gravity="bottom|end"
-        android:padding="24dp"
+        android:padding="16dp"
+        android:singleLine="true"
+        android:scrollHorizontally="true"
+        android:ellipsize="none"
         android:text="0"
         android:textColor="#FFFFFF"
         android:textSize="56sp"
-        android:cursorVisible="true"
-        android:singleLine="true"
         app:layout_constraintBottom_toTopOf="@+id/teclado_calculadora"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_weight="1" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_Historial"
+        app:layout_constraintVertical_weight="0.35" />
 
-    <!-- Contenedor principal del teclado -->
+    <!-- 3. CONTENEDOR PRINCIPAL DEL TECLADO -->
     <LinearLayout
         android:id="@+id/teclado_calculadora"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_resultado"
+        app:layout_constraintVertical_weight="0.65">
 
         <!-- Fila 1: AC, (), %, / -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -55,7 +72,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_paren"
-                android:textSize="30sp" />
+                android:textSize="25sp" />
 
             <Button
                 android:id="@+id/button_porcen"
@@ -79,7 +96,8 @@
         <!-- Fila 2: 7, 8, 9, X -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -109,7 +127,6 @@
                 android:text="@string/boton_9"
                 android:textSize="24sp" />
 
-            <!-- Añadí este botón para completar la cuadrícula, ajusta el @string -->
             <Button
                 android:id="@+id/button_mult"
                 android:layout_width="0dp"
@@ -123,7 +140,8 @@
         <!-- Fila 3: 4, 5, 6, - -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -166,7 +184,8 @@
         <!-- Fila 4: 1, 2, 3, + -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -209,7 +228,8 @@
         <!-- Fila 5: C, 0, ., = -->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <Button
@@ -248,7 +268,31 @@
                 android:text="="
                 android:textSize="30sp" />
         </LinearLayout>
-
     </LinearLayout>
+
+    <!-- Panel de Historial (Oculto por defecto, cubre los botones) -->
+    <ScrollView
+        android:id="@+id/panel_historial"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#1E1E1E"
+        android:padding="24dp"
+        android:visibility="gone"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/teclado_calculadora"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/teclado_calculadora">
+
+        <TextView
+            android:id="@+id/tv_historial"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Aún no hay cálculos"
+            android:textColor="#A0A0A0"
+            android:textSize="24sp"
+            android:gravity="end" />
+
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
