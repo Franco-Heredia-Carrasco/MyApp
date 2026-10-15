@@ -1,3 +1,4 @@
+
 package controlador.Mapa;
 
 import android.Manifest;
@@ -40,6 +41,10 @@ public class Mapa extends Fragment {
     private LocationListener locationListener;
     private boolean seguimientoActivo = false;
 
+    private static final float PRECISION_MINIMA_METROS = 5.0f;
+    private static final float MOVIMIENTO_MINIMO_METROS = 3.0f;
+    private Location ultimaUbicacionAceptada;
+
     private final ActivityResultLauncher<String> requestPermissionLauncher =
             registerForActivityResult(
                     new ActivityResultContracts.RequestPermission(),
@@ -78,7 +83,6 @@ public class Mapa extends Fragment {
         Context context = requireContext();
         Context appContext = context.getApplicationContext();
 
-        // Configuración de osmdroid.
         Configuration.getInstance().load(
                 appContext,
                 appContext.getSharedPreferences(
@@ -98,7 +102,6 @@ public class Mapa extends Fragment {
 
         map = view.findViewById(R.id.mapa_osm);
 
-        // Evita un NullPointerException si el ID no existe.
         if (map == null) {
             Toast.makeText(
                     context,
@@ -118,7 +121,6 @@ public class Mapa extends Fragment {
 
         mapController.setZoom(14.0);
 
-        // Centro inicial: Iquique.
         mapController.setCenter(
                 new GeoPoint(-20.2133, -70.1502)
         );
@@ -134,7 +136,6 @@ public class Mapa extends Fragment {
         return view;
     }
 
-    // Comprueba si existe permiso de ubicación precisa o aproximada.
     private boolean tienePermisoUbicacion() {
 
         Context context = getContext();
@@ -158,7 +159,6 @@ public class Mapa extends Fragment {
         return permisoPreciso || permisoAproximado;
     }
 
-    // Conserva el nombre del método original.
     private void iniciarGPSyRecorrido() {
 
         if (!isAdded()
@@ -189,7 +189,6 @@ public class Mapa extends Fragment {
 
         try {
 
-            // Comprueba si el GPS está activado.
             if (!locationManager.isProviderEnabled(
                     LocationManager.GPS_PROVIDER)) {
 
@@ -202,7 +201,6 @@ public class Mapa extends Fragment {
                 return;
             }
 
-            // Crear el indicador de ubicación una sola vez.
             if (myLocationOverlay == null) {
 
                 GpsMyLocationProvider provider =
@@ -217,7 +215,6 @@ public class Mapa extends Fragment {
             myLocationOverlay.enableMyLocation();
             myLocationOverlay.enableFollowLocation();
 
-            // Crear la línea del recorrido una sola vez.
             if (lineaRecorrido == null) {
 
                 lineaRecorrido = new Polyline();
@@ -234,10 +231,23 @@ public class Mapa extends Fragment {
                 public void onLocationChanged(
                         @NonNull Location location) {
 
-                    // La vista podría haberse destruido.
                     if (map == null || lineaRecorrido == null) {
                         return;
                     }
+
+                    if (location.hasAccuracy()
+                            && location.getAccuracy()
+                            > PRECISION_MINIMA_METROS) {
+                        return;
+                    }
+
+                    if (ultimaUbicacionAceptada != null
+                            && ultimaUbicacionAceptada.distanceTo(location)
+                            < MOVIMIENTO_MINIMO_METROS) {
+                        return;
+                    }
+
+                    ultimaUbicacionAceptada = new Location(location);
 
                     GeoPoint puntoActual = new GeoPoint(
                             location.getLatitude(),
@@ -252,7 +262,6 @@ public class Mapa extends Fragment {
                 @Override
                 public void onProviderEnabled(
                         @NonNull String provider) {
-                    // No es necesaria ninguna acción adicional.
                 }
 
                 @Override
@@ -276,12 +285,9 @@ public class Mapa extends Fragment {
                         String provider,
                         int status,
                         Bundle extras) {
-                    // Compatibilidad con versiones antiguas.
                 }
             };
 
-            // Actualizar la ubicación cada 2 segundos
-            // o cuando el dispositivo se mueva 2 metros.
             locationManager.requestLocationUpdates(
                     LocationManager.GPS_PROVIDER,
                     2000L,
@@ -305,7 +311,6 @@ public class Mapa extends Fragment {
         }
     }
 
-    // Detiene las actualizaciones cuando ya no se necesitan.
     private void detenerSeguimiento() {
 
         if (locationManager != null
@@ -315,7 +320,6 @@ public class Mapa extends Fragment {
                 locationManager.removeUpdates(locationListener);
 
             } catch (SecurityException ignored) {
-                // El permiso pudo cambiar durante la ejecución.
             }
         }
 
@@ -373,8 +377,11 @@ public class Mapa extends Fragment {
         lineaRecorrido = null;
         locationManager = null;
         locationListener = null;
+        ultimaUbicacionAceptada = null;
         map = null;
 
         super.onDestroyView();
     }
 }
+
+
