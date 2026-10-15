@@ -101,14 +101,13 @@ public class MainActivity extends AppCompatActivity {
         FirebaseUser usuarioActual = mAuth.getCurrentUser();
 
         if (usuarioActual != null) {
-            // Si ya inició sesión: Ocultamos Login y mostramos el Mapa
+
             btnIniciarSesion.setVisibility(View.GONE);
             btnMapa.setVisibility(View.VISIBLE);
             btnCerrarSession.setVisibility(View.VISIBLE);
         } else {
-            // Si no hay sesión: Mostramos Login y ocultamos el Mapa
             btnIniciarSesion.setVisibility(View.VISIBLE);
-            btnMapa.setVisibility(View.VISIBLE);
+            btnMapa.setVisibility(View.GONE);
             btnCerrarSession.setVisibility(View.GONE);
         }
     }

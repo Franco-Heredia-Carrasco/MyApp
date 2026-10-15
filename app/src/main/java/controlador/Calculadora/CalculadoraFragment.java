@@ -84,9 +84,19 @@ public class CalculadoraFragment extends Fragment {
         Button btnPunto = view.findViewById(R.id.button_punto);
         if (btnPunto != null) {
             btnPunto.setOnClickListener(v -> {
+                if (inputActual.equals("Error")) {
+                    inputActual = "";
+                }
+
                 if (!inputActual.contains(".")) {
-                    if (inputActual.isEmpty()) inputActual = "0.";
-                    else inputActual += ".";
+                    if (inputActual.isEmpty()) {
+                        inputActual = "0.";
+                    } else if (inputActual.equals("-")) {
+                        inputActual = "-0.";
+                    } else {
+                        inputActual += ".";
+                    }
+
                     actualizarPantalla(inputActual);
                 }
             });

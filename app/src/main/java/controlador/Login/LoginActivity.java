@@ -1,61 +1,174 @@
 package controlador.Login;
 
-import com.google.firebase.firestore.FirebaseFirestore;
-import java.util.HashMap;
-import java.util.Map;
 import android.os.Bundle;
+import android.util.Patterns;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
-// Importaciones clave de Firebase
 import com.franco.asistenciaiquique.R;
+import com.google.firebase.FirebaseNetworkException;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    private EditText etCorreo, etPassword;
+    private EditText etCorreo;
+    private EditText etPassword;
+    private Button btnIngresar;
+
+    private boolean inicioSesionEnCurso = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        // 1. Inicializar la conexión a Firebase
-        mAuth = FirebaseAuth.getInstance();
+        setContentView(R.layout.activity_login);
 
         etCorreo = findViewById(R.id.et_correo);
         etPassword = findViewById(R.id.et_password);
-        Button btnIngresar = findViewById(R.id.btn_ingresar);
+        btnIngresar = findViewById(R.id.btn_ingresar);
+
+        // Evita errores si algún ID no coincide con el XML.
+        if (etCorreo == null
+                || etPassword == null
+                || btnIngresar == null) {
+
+            Toast.makeText(
+                    this,
+                    "Error de diseño. Revisa los IDs de activity_login.xml.",
+                    Toast.LENGTH_LONG
+            ).show();
+
+            finish();
+            return;
+        }
+
+        // Inicializar Firebase.
+        try {
+            mAuth = FirebaseAuth.getInstance();
+
+        } catch (IllegalStateException e) {
+
+            Toast.makeText(
+                    this,
+                    "Firebase no está configurado. "
+                            + "Revisa google-services.json y Gradle.",
+                    Toast.LENGTH_LONG
+            ).show();
+
+            finish();
+            return;
+        }
 
         btnIngresar.setOnClickListener(v -> {
-            String correo = etCorreo.getText().toString().trim();
-            String password = etPassword.getText().toString().trim();
 
-            if (correo.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Completa todos los campos", Toast.LENGTH_SHORT).show();
+            // Evitar múltiples solicitudes simultáneas.
+            if (inicioSesionEnCurso) {
                 return;
             }
 
-            // 2. Ejecutar el login
+            String correo =
+                    etCorreo.getText().toString().trim();
+
+            // No eliminar espacios de la contraseña.
+            String password =
+                    etPassword.getText().toString();
+
+            if (correo.isEmpty() || password.isEmpty()) {
+
+                Toast.makeText(
+                        this,
+                        "Completa todos los campos",
+                        Toast.LENGTH_SHORT
+                ).show();
+
+                return;
+            }
+
+            if (!Patterns.EMAIL_ADDRESS
+                    .matcher(correo)
+                    .matches()) {
+
+                etCorreo.setError("Ingresa un correo válido");
+                etCorreo.requestFocus();
+
+                return;
+            }
+
             iniciarSesion(correo, password);
         });
     }
 
-    private void iniciarSesion(String correo, String password) {
-        // 3. Petición a los servidores de Google
+    // Conserva el nombre y la función del método original.
+    private void iniciarSesion(
+            String correo,
+            String password) {
+
+        if (mAuth == null
+                || btnIngresar == null
+                || isFinishing()
+                || isDestroyed()) {
+            return;
+        }
+
+        if (inicioSesionEnCurso) {
+            return;
+        }
+
+        inicioSesionEnCurso = true;
+        btnIngresar.setEnabled(false);
+
         mAuth.signInWithEmailAndPassword(correo, password)
                 .addOnCompleteListener(this, task -> {
+
+                    inicioSesionEnCurso = false;
+
+                    // No actualizar la interfaz si se cerró la pantalla.
+                    if (isFinishing() || isDestroyed()) {
+                        return;
+                    }
+
+                    if (btnIngresar != null) {
+                        btnIngresar.setEnabled(true);
+                    }
+
                     if (task.isSuccessful()) {
-                        // Éxito: El usuario existe y la clave es correcta
-                        Toast.makeText(this, "Conectado correctamente", Toast.LENGTH_SHORT).show();
-                        finish(); // 4. Destruye esta pantalla y vuelve al MainActivity
+
+                        Toast.makeText(
+                                this,
+                                "Conectado correctamente",
+                                Toast.LENGTH_SHORT
+                        ).show();
+
+                        // Mantiene el comportamiento original:
+                        // cierra el login y vuelve a la pantalla anterior.
+                        finish();
+
                     } else {
-                        // Fallo: Clave mala, no existe, o no hay internet
-                        Toast.makeText(this, "Error de autenticación", Toast.LENGTH_SHORT).show();
+
+                        Exception error = task.getException();
+
+                        if (error instanceof FirebaseNetworkException) {
+
+                            Toast.makeText(
+                                    this,
+                                    "No hay conexión. "
+                                            + "Revisa tu conexión a Internet.",
+                                    Toast.LENGTH_LONG
+                            ).show();
+
+                        } else {
+
+                            Toast.makeText(
+                                    this,
+                                    "No se pudo iniciar sesión. "
+                                            + "Revisa el correo y la contraseña.",
+                                    Toast.LENGTH_LONG
+                            ).show();
+                        }
                     }
                 });
     }
