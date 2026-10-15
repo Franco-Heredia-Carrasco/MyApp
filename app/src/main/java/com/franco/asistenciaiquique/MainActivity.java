@@ -11,7 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-
+import androidx.fragment.app.FragmentManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -23,7 +23,6 @@ import controlador.Guias.GuiasFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-
     private Button btnIniciarSesion, btnMapa, btnCerrarSession;
     private FirebaseAuth mAuth;
 
@@ -33,42 +32,43 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
-
 
         btnIniciarSesion = findViewById(R.id.boton_iniciar_sesion);
         btnMapa = findViewById(R.id.boton_mapa);
         btnCerrarSession = findViewById(R.id.boton_cerrar_sesion);
 
-
         btnIniciarSesion.setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, controlador.Login.LoginActivity.class));
         });
 
+        // CORRECCIÓN AQUÍ: Cierra el mapa si existía y lo vuelve a inflar completamente desde cero
         btnMapa.setOnClickListener(v -> {
-            getSupportFragmentManager().beginTransaction()
+            FragmentManager fragmentManager = getSupportFragmentManager();
+
+            // Si el mapa ya estaba en el BackStack, lo removemos para "cerrarlo" antes de reiniciar
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
+            // Creamos una transacción limpia e instanciamos un mapa totalmente nuevo
+            fragmentManager.beginTransaction()
                     .replace(R.id.fragment_container, new controlador.Mapa.Mapa())
-                    .addToBackStack(null) // Esto permite usar el botón "Atrás" del celular para salir del mapa
+                    .addToBackStack(null)
                     .commit();
         });
 
         btnCerrarSession.setOnClickListener(V -> {
-                    FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(this,"Cerrar Session", Toast.LENGTH_SHORT).show();
-                    onResume();
-                });
-
+            mAuth.signOut();
+            Toast.makeText(this, "Sesión Cerrada", Toast.LENGTH_SHORT).show();
+            actualizarInterfazUsuario(null);
+        });
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
-
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, new GuiasFragment())
                     .commit();
         }
-
 
         bottomNav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -83,6 +83,9 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 if (selectedFragment != null) {
+                    // Si cambias de pestaña abajo, limpiamos el mapa viejo del BackStack
+                    getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+
                     getSupportFragmentManager().beginTransaction()
                             .replace(R.id.fragment_container, selectedFragment)
                             .commit();
@@ -96,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Verificamos si hay una sesión activa en Firebase
         FirebaseUser usuarioActual = mAuth.getCurrentUser();
+        actualizarInterfazUsuario(usuarioActual);
+    }
 
-        if (usuarioActual != null) {
-
+    private void actualizarInterfazUsuario(FirebaseUser usuario) {
+        if (usuario != null) {
             btnIniciarSesion.setVisibility(View.GONE);
             btnMapa.setVisibility(View.VISIBLE);
             btnCerrarSession.setVisibility(View.VISIBLE);
