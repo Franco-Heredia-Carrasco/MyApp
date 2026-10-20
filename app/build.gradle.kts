@@ -1,7 +1,5 @@
 plugins {
     id("com.android.application")
-    // Plugin de Firebase (necesario para tu inicio de sesión)
-    id("com.google.gms.google-services")
 }
 
 android {
@@ -39,16 +37,10 @@ dependencies {
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
 
-    // 2. Firebase (Autenticación que ya tienes en tu MainActivity)
-    // Usamos el BoM de Firebase para que las versiones sean compatibles automáticamente
-    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
-    implementation("com.google.firebase:firebase-auth")
-    implementation("com.google.firebase:firebase-firestore")
-
-    // 3. ¡NUEVO! Librería de mapas gratuitos (Osmdroid)
+    // 2. ¡NUEVO! Librería de mapas gratuitos (Osmdroid)
     implementation("org.osmdroid:osmdroid-android:6.1.18")
 
-    // 4. Testing (por defecto en Android Studio)
+    // 3. Testing (por defecto en Android Studio)
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
