@@ -23,7 +23,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // 2. Insertamos tu cuenta real y la del profesor (puedes cambiar estos datos)
         db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('francoalonsokaled@gmail.com', 'HCar2006.')");
-        db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('profe@santotomas.cl', '123456')");
+        db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('profe@santotomas.cl', '1234567')");
     }
 
     @Override
