@@ -41,16 +41,18 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void iniciarSesion(String correo, String password) {
-        // Consultamos a SQLite si las credenciales son correctas
-        boolean esValido = dbHelper.validarLogin(correo, password);
+        String rolObtenido = dbHelper.ObtenerRol(correo, password);
 
-        if (esValido) {
-            // Guardamos un pequeño archivo en el teléfono indicando que la sesión está activa
+        if (rolObtenido != null) {
+            // Guardamos la sesión y el nivel de acceso en SharedPreferences
             SharedPreferences preferencias = getSharedPreferences("SesionApp", MODE_PRIVATE);
-            preferencias.edit().putBoolean("isLogged", true).apply();
+            preferencias.edit()
+                    .putBoolean("isLogged", true)
+                    .putString("rolUsuario", rolObtenido)
+                    .apply();
 
-            Toast.makeText(this, "Conectado correctamente", Toast.LENGTH_SHORT).show();
-            finish(); // Destruye la pantalla de login y vuelve al menú principal
+            Toast.makeText(this, "Bienvenido " + rolObtenido, Toast.LENGTH_SHORT).show();
+            finish();
         } else {
             Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
