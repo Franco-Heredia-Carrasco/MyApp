@@ -1,5 +1,6 @@
 package controlador.Login;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.Button;
@@ -7,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.franco.asistenciaiquique.MainActivity;
 import com.franco.asistenciaiquique.R;
 import controlador.BaseDeDatos.DatabaseHelper;
 
@@ -43,16 +45,23 @@ public class LoginActivity extends AppCompatActivity {
     private void iniciarSesion(String correo, String password) {
         String rolObtenido = dbHelper.ObtenerRol(correo, password);
 
-        if (rolObtenido != null) {
-            // Guardamos la sesión y el nivel de acceso en SharedPreferences
+        // 1. Verificamos que el rol exista y no esté vacío
+        if (rolObtenido != null && !rolObtenido.isEmpty()) {
+
+            // 2. Guardamos la sesión y el nivel de acceso en SharedPreferences
             SharedPreferences preferencias = getSharedPreferences("SesionApp", MODE_PRIVATE);
-            preferencias.edit()
-                    .putBoolean("isLogged", true)
-                    .putString("rolUsuario", rolObtenido)
-                    .apply();
+            SharedPreferences.Editor editor = preferencias.edit();
+            editor.putBoolean("isLogged", true);
+            editor.putString("rolUsuario", rolObtenido);
+            editor.apply(); // Guarda los cambios
 
             Toast.makeText(this, "Bienvenido " + rolObtenido, Toast.LENGTH_SHORT).show();
-            finish();
+
+            // 3. Pasas al MainActivity
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            startActivity(intent);
+            finish(); // Cierra el login para que no puedan volver con el botón "atrás"
+
         } else {
             Toast.makeText(this, "Correo o contraseña incorrectos", Toast.LENGTH_SHORT).show();
         }
