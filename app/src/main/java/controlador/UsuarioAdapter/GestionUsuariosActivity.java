@@ -42,7 +42,7 @@ public class GestionUsuariosActivity extends AppCompatActivity {
     }
 
     private void mostrarDialogoEliminar(String correo) {
-        if (correo.equals("profe@santotomas.cl") || correo.equals("francoalonsokaled@gmail.com")) {
+        if (correo.equals("profe@santotomas.cl")) {
             Toast.makeText(this, "No puedes eliminar cuentas de administrador", Toast.LENGTH_SHORT).show();
             return;
         }
