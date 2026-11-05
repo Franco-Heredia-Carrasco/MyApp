@@ -46,6 +46,10 @@
             android:name="controlador.UsuarioAdapter.GestionUsuariosActivity"
             android:exported="false"
             tools:ignore="LockerOrientationActivity"/>
+        <activity
+            android:name="controlador.Registro.RegistroActivity"
+            android:exported="false"
+            tools:ignore="LockerOrientationActivity"/>
 
     </application>
 

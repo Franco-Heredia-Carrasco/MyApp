@@ -48,5 +48,9 @@
     <string name="boton_mapa">Ver mapa</string>
     <string name="boton_unloggin">Cerrar Session</string>
 
+    //Tema de link de registro
+
+    <string name="Link_Registro">¿No tienes cuenta? Regístrate</string>
+
 
 </resources>

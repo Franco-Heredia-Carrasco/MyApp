@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#D3D3D3"> <!-- Fondo gris ligero para que la tarjeta blanca resalte -->
+
+    <!-- Tarjeta flotante con bordes redondeados y sombra -->
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="8dp">
+
+        <!-- Contenedor interno de los elementos -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center_horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Crear Nueva Cuenta"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:textColor="#333333"
+                android:layout_marginBottom="24dp"/>
+
+            <EditText
+                android:id="@+id/etNuevoCorreo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Correo de la cuenta"
+                android:inputType="textPersonName"
+                android:padding="12dp"
+                android:background="#050505"
+                android:layout_marginBottom="16dp"/>
+
+            <EditText
+                android:id="@+id/etNuevaPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Contraseña"
+                android:inputType="textPassword"
+                android:padding="12dp"
+                android:background="#0F0F0F"
+                android:layout_marginBottom="24dp"/>
+
+            <Button
+                android:id="@+id/btnGuardarRegistro"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:text="Registrar"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#4CAF50"
+                android:textStyle="bold"/>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>

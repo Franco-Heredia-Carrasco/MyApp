@@ -1,6 +1,7 @@
 package controlador.BaseDeDatos;
 
 import android.annotation.SuppressLint;
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -11,9 +12,9 @@ import java.util.ArrayList;
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "AsistenciaIquique.db";
-    // Usamos la versión 4 para forzar a que Android borre cualquier prueba anterior
+    // Usamos la versión 6 para forzar a que Android borre cualquier prueba anterior
     // y cargue estos nuevos usuarios que vas a insertar.
-    private static final int DATABASE_VERSION = 4;
+    private static final int DATABASE_VERSION = 6;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -21,17 +22,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        // 1. Creamos la tabla de usuarios y roles
         db.execSQL("CREATE TABLE Usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, correo TEXT UNIQUE, password TEXT)");
-        db.execSQL("CREATE TABLE Roles (rol TEXT PRIMARY KEY, correo TEXT, FOREIGN KEY (correo) REFERENCES Usuarios(correo))");
-        // 2. Insertamos mi cuenta real y la del profesor (puedes cambiar estos datos)
+
+        // REEMPLAZA LA LÍNEA DE LA TABLA ROLES POR ESTA:
+        db.execSQL("CREATE TABLE Roles (correo TEXT PRIMARY KEY, rol TEXT, FOREIGN KEY (correo) REFERENCES Usuarios(correo))");
+
         db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('francoalonsokaled@gmail.com', 'HCar2006.')");
         db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('profe@santotomas.cl', '1234567')");
-        // 3. Insertamos los roles a ambas cuentas
-        db.execSQL("INSERT INTO Roles (rol, correo) VALUES ('Administrador', 'profe@santotomas.cl')");
-        db.execSQL("INSERT INTO Roles (rol, correo) VALUES ('Usuario', 'francoalonsokaled@gmail.com')");
-    }
 
+        // Y CAMBIA EL ORDEN AQUÍ PARA QUE COINCIDA (primero correo, luego rol):
+        db.execSQL("INSERT INTO Roles (correo, rol) VALUES ('profe@santotomas.cl', 'Administrador')");
+        db.execSQL("INSERT INTO Roles (correo, rol) VALUES ('francoalonsokaled@gmail.com', 'Usuario')");
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -40,7 +42,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS Roles");
         onCreate(db);
     }
-
 
     public String ObtenerRol(String correo, String password ) {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -59,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return rol;
     }
+
     @SuppressLint("Range")
     public ArrayList<String> obtenerTodosLosUsuarios() {
         ArrayList<String> lista = new ArrayList<>();
@@ -75,6 +77,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         cursor.close();
         return lista;
     }
+
     // Método para eliminar un usuario por su correo
     public boolean eliminarUsuario(String correo) {
         SQLiteDatabase db = this.getWritableDatabase();
@@ -88,5 +91,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Si filasBorradas es mayor a 0, significa que se eliminó correctamente
         return filasBorradas > 0;
     }
-}
 
+    // =========================================================
+    // MÉTODO AGREGADO: Insertar Usuario (Manteniendo tu lógica)
+    // =========================================================
+    public boolean insertarUsuario(String correo, String password, String rol) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // 1. Insertamos en la tabla Usuarios
+        ContentValues valoresUsuario = new ContentValues();
+        valoresUsuario.put("correo", correo);
+        valoresUsuario.put("password", password);
+
+        long idUsuario = db.insert("Usuarios", null, valoresUsuario);
+        if (idUsuario == -1) {
+            return false; // Falla si el correo ya existe
+        }
+
+        // 2. Insertamos en la tabla Roles
+        ContentValues valoresRol = new ContentValues();
+        valoresRol.put("rol", rol);
+        valoresRol.put("correo", correo);
+
+        long idRol = db.insert("Roles", null, valoresRol);
+
+        return idRol != -1;
+    }
+}
