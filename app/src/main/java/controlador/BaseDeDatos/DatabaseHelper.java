@@ -35,6 +35,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("INSERT INTO Roles (correo, rol) VALUES ('francoalonsokaled@gmail.com', 'Usuario')");
     }
 
+    //Funcion que elimina las tablas si es que existen en la DB de la APP
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // Si cambiamos la versión, borra la tabla vieja y vuelve a ejecutar onCreate
@@ -43,6 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    // Funcion para obtener el rol de la base de datos
     public String ObtenerRol(String correo, String password ) {
         SQLiteDatabase db = this.getReadableDatabase();
         String rol = null;
