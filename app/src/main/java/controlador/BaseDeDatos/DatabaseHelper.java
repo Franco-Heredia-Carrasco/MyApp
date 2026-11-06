@@ -19,18 +19,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-
+    // Funcion para crear las tablas e insertar datos a la base de datos cuando se instala
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("CREATE TABLE Usuarios (id INTEGER PRIMARY KEY AUTOINCREMENT, correo TEXT UNIQUE, password TEXT)");
-
-        // REEMPLAZA LA LÍNEA DE LA TABLA ROLES POR ESTA:
         db.execSQL("CREATE TABLE Roles (correo TEXT PRIMARY KEY, rol TEXT, FOREIGN KEY (correo) REFERENCES Usuarios(correo))");
 
         db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('francoalonsokaled@gmail.com', 'HCar2006.')");
         db.execSQL("INSERT INTO Usuarios (correo, password) VALUES ('profe@santotomas.cl', '1234567')");
 
-        // Y CAMBIA EL ORDEN AQUÍ PARA QUE COINCIDA (primero correo, luego rol):
         db.execSQL("INSERT INTO Roles (correo, rol) VALUES ('profe@santotomas.cl', 'Administrador')");
         db.execSQL("INSERT INTO Roles (correo, rol) VALUES ('francoalonsokaled@gmail.com', 'Usuario')");
     }
@@ -63,6 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return rol;
     }
 
+    //Funcion para buscar todos los usuarios para el panel del administrador
     @SuppressLint("Range")
     public ArrayList<String> obtenerTodosLosUsuarios() {
         ArrayList<String> lista = new ArrayList<>();
@@ -80,7 +78,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return lista;
     }
 
-    // Método para eliminar un usuario por su correo
+    // Método para eliminar usuarios por el adminisrador en la App
     public boolean eliminarUsuario(String correo) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -94,13 +92,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return filasBorradas > 0;
     }
 
-    // =========================================================
-    // MÉTODO AGREGADO: Insertar Usuario (Manteniendo tu lógica)
-    // =========================================================
+
+    // Metodo agregado: Funcion para agregar usuarios directamente por la app
+
     public boolean insertarUsuario(String correo, String password, String rol) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        // 1. Insertamos en la tabla Usuarios
+        //Insertamos en la tabla Usuarios
         ContentValues valoresUsuario = new ContentValues();
         valoresUsuario.put("correo", correo);
         valoresUsuario.put("password", password);
@@ -110,7 +108,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return false; // Falla si el correo ya existe
         }
 
-        // 2. Insertamos en la tabla Roles
+        // Insertamos en la tabla Roles
         ContentValues valoresRol = new ContentValues();
         valoresRol.put("rol", rol);
         valoresRol.put("correo", correo);

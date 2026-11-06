@@ -31,7 +31,7 @@ public class GestionUsuariosActivity extends AppCompatActivity {
 
         cargarLista();
     }
-
+    //Funcion que carga la lista del panel de administrador desde Gestion usuarios activity a UsuariosAdapter
     private void cargarLista() {
         listaCorreos = dbHelper.obtenerTodosLosUsuarios();
 
@@ -40,13 +40,13 @@ public class GestionUsuariosActivity extends AppCompatActivity {
 
         rvUsuarios.setAdapter(adapter);
     }
-
+    // Un toast que lanzara un mensaje si el borrado fue exitoso
     private void mostrarDialogoEliminar(String correo) {
         if (correo.equals("profe@santotomas.cl")) {
             Toast.makeText(this, "No puedes eliminar cuentas de administrador", Toast.LENGTH_SHORT).show();
             return;
         }
-
+        // Mensaje de aseguracion para eliminar un usuario
         new AlertDialog.Builder(this)
                 .setTitle("Eliminar Usuario")
                 .setMessage("¿Estás seguro de que deseas eliminar permanentemente a " + correo + "?")

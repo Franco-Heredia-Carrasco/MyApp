@@ -63,7 +63,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_ac"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/button_parentesis"
@@ -72,7 +72,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_paren"
-                android:textSize="25sp" />
+                android:textSize="17sp" />
 
             <Button
                 android:id="@+id/button_porcen"
@@ -81,7 +81,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_porcen"
-                android:textSize="30sp" />
+                android:textSize="17sp" />
 
             <Button
                 android:id="@+id/button_div"
@@ -90,7 +90,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_div"
-                android:textSize="30sp" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <!-- Fila 2: 7, 8, 9, X -->
@@ -107,7 +107,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_7"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_8"
@@ -116,7 +116,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_8"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_9"
@@ -125,7 +125,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_9"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_mult"
@@ -134,7 +134,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="*"
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </LinearLayout>
 
         <!-- Fila 3: 4, 5, 6, - -->
@@ -151,7 +151,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_4"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_5"
@@ -160,7 +160,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_5"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_6"
@@ -169,7 +169,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_6"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_resta"
@@ -178,7 +178,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="-"
-                android:textSize="30sp" />
+                android:textSize="21sp" />
         </LinearLayout>
 
         <!-- Fila 4: 1, 2, 3, + -->
@@ -195,7 +195,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_1"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_2"
@@ -204,7 +204,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_2"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_3"
@@ -213,7 +213,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_3"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_suma"
@@ -222,7 +222,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="+"
-                android:textSize="30sp" />
+                android:textSize="17sp" />
         </LinearLayout>
 
         <!-- Fila 5: C, 0, ., = -->
@@ -239,7 +239,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_c"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_0"
@@ -248,7 +248,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_0"
-                android:textSize="24sp" />
+                android:textSize="20sp" />
 
             <Button
                 android:id="@+id/button_punto"
@@ -257,7 +257,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="@string/boton_."
-                android:textSize="30sp" />
+                android:textSize="21sp" />
 
             <Button
                 android:id="@+id/button_igual"
@@ -266,7 +266,7 @@
                 android:layout_margin="4dp"
                 android:layout_weight="1"
                 android:text="="
-                android:textSize="30sp" />
+                android:textSize="20sp" />
         </LinearLayout>
     </LinearLayout>
 
