@@ -5,14 +5,14 @@ mediantes guías y funciones que permitan una mayo facilidad al hacer estas prev
 
 ---
 
-- Característica 1 (Ej. Autenticación con Firebase)
-- Característica 2 (Ej. Interfaz moderna con Jetpack Compose)
-- Característica 3 (Ej. Modo oscuro integrado)
+- Característica 1: Autenticación con Firebase
+- Característica 2: App basica rapida y facil de usar
+- Característica 3: Colores fries para no dañar la vista en un desastre natural
 
 ---
 
-* **Lenguaje:** [Kotlin / Java]
-* **Diseño de Interfaz:** [Jetpack Compose / Vistas XML]
+* **Lenguaje:Java  
+* **Diseño de Interfaz:Vistas XML
 * **Arquitectura:** [MVVM / Clean Architecture]
 * **Conexión a Red:** [Retrofit / Ktor]
 * **Base de Datos:** [Room / SQLite]

@@ -26,6 +26,11 @@ public class RegistroActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.registro_layout_activity);
 
+        //Funcion para bloquear screenshots
+        getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE, android.view.WindowManager.LayoutParams.FLAG_SECURE);
+
+        setContentView(R.layout.registro_layout_activity);
+
         // 1. Enlazamos con el nuevo ID del XML
         etNuevoCorreo = findViewById(R.id.etNuevoCorreo);
         etNuevaPass = findViewById(R.id.etNuevaPass);

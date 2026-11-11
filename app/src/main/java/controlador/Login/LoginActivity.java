@@ -25,6 +25,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Bloqueo de screenchots para evitar robos de contraseñas
+        getWindow().setFlags(android.view.WindowManager.LayoutParams.FLAG_SECURE, android.view.WindowManager.LayoutParams.FLAG_SECURE);
+        setContentView(R.layout.activity_login);
+
         // Inicializamos nuestra base de datos local SQLite
         dbHelper = new DatabaseHelper(this);
 
